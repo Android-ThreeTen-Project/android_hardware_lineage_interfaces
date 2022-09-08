@@ -19,6 +19,9 @@
 
 #include "hidl_struct_util.h"
 
+
+#pragma GCC diagnostic ignored "-Wswitch"
+
 namespace android {
 namespace hardware {
 namespace wifi {
@@ -2485,6 +2488,7 @@ V1_6::RttPreamble convertLegacyRttPreambleToHidl(legacy_hal::wifi_rtt_preamble t
             return V1_6::RttPreamble::EHT;
     };
     CHECK(false) << "Unknown legacy type: " << type;
+    return RttPreamble::LEGACY;
 }
 
 legacy_hal::wifi_rtt_bw convertHidlRttBwToLegacy(RttBw type) {
@@ -2505,6 +2509,7 @@ legacy_hal::wifi_rtt_bw convertHidlRttBwToLegacy(RttBw type) {
             return legacy_hal::WIFI_RTT_BW_320;
     };
     CHECK(false);
+    return legacy_hal::WIFI_RTT_BW_5;
 }
 
 RttBw convertLegacyRttBwToHidl(legacy_hal::wifi_rtt_bw type) {
@@ -2525,6 +2530,7 @@ RttBw convertLegacyRttBwToHidl(legacy_hal::wifi_rtt_bw type) {
             return RttBw::BW_320MHZ;
     };
     CHECK(false) << "Unknown legacy type: " << type;
+    return RttBw::BW_5MHZ;
 }
 
 legacy_hal::wifi_motion_pattern convertHidlRttMotionPatternToLegacy(RttMotionPattern type) {
@@ -2537,6 +2543,7 @@ legacy_hal::wifi_motion_pattern convertHidlRttMotionPatternToLegacy(RttMotionPat
             return legacy_hal::WIFI_MOTION_UNKNOWN;
     };
     CHECK(false);
+    return legacy_hal::WIFI_MOTION_NOT_EXPECTED;
 }
 
 V1_6::WifiRatePreamble convertLegacyWifiRatePreambleToHidl(uint8_t preamble) {
@@ -2557,6 +2564,7 @@ V1_6::WifiRatePreamble convertLegacyWifiRatePreambleToHidl(uint8_t preamble) {
             return V1_6::WifiRatePreamble::RESERVED;
     };
     CHECK(false) << "Unknown legacy preamble: " << preamble;
+    return WifiRatePreamble::OFDM;
 }
 
 WifiRateNss convertLegacyWifiRateNssToHidl(uint8_t nss) {
@@ -2614,6 +2622,7 @@ RttStatus convertLegacyRttStatusToHidl(legacy_hal::wifi_rtt_status status) {
             return RttStatus::FAILURE;  // TODO: add HIDL enumeration
     };
     CHECK(false) << "Unknown legacy status: " << status;
+    return RttStatus::FAILURE;  // TODO: add HIDL enumeration
 }
 
 bool convertHidlWifiChannelInfoToLegacy(const WifiChannelInfo& hidl_info,
