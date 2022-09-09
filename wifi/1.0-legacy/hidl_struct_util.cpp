@@ -2300,6 +2300,7 @@ WifiChannelWidthInMhz convertLegacyWifiChannelWidthToHidl(
             return WifiChannelWidthInMhz::WIDTH_INVALID;
     };
     CHECK(false) << "Unknown legacy type: " << type;
+     return WifiChannelWidthInMhz::WIDTH_INVALID;
 }
 
 legacy_hal::wifi_rtt_preamble convertHidlRttPreambleToLegacy(RttPreamble type) {
