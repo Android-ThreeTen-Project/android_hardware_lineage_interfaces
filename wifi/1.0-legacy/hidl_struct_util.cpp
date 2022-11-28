@@ -21,6 +21,7 @@
 
 
 #pragma GCC diagnostic ignored "-Wswitch"
+#pragma clang diagnostic ignored "-Wreturn-type"
 
 namespace android {
 namespace hardware {
@@ -1073,6 +1074,7 @@ NanStatusType convertLegacyNanStatusTypeToHidl(legacy_hal::NanStatusType type) {
             return NanStatusType::UNSUPPORTED_CONCURRENCY_NAN_DISABLED;
     }
     CHECK(false);
+    return {};
 }
 
 void convertToWifiNanStatus(legacy_hal::NanStatusType type, const char* str,

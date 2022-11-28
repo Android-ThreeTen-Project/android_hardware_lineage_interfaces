@@ -25,6 +25,8 @@
 #include "wifi_legacy_hal.h"
 #include "wifi_legacy_hal_stubs.h"
 
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
+
 namespace {
 // Constants ported over from the legacy HAL calling code
 // (com_android_server_wifi_WifiNative.cpp). This will all be thrown
