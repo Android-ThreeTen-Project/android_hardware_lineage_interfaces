@@ -19,7 +19,7 @@
 namespace android {
 namespace hardware {
 namespace wifi {
-namespace V1_6 {
+namespace V1_4 {
 namespace implementation {
 
 std::string legacyErrorToString(legacy_hal::wifi_error error) {
@@ -51,7 +51,8 @@ std::string legacyErrorToString(legacy_hal::wifi_error error) {
     }
 }
 
-WifiStatus createWifiStatus(WifiStatusCode code, const std::string& description) {
+WifiStatus createWifiStatus(WifiStatusCode code,
+                            const std::string& description) {
     return {code, description};
 }
 
@@ -59,7 +60,8 @@ WifiStatus createWifiStatus(WifiStatusCode code) {
     return createWifiStatus(code, "");
 }
 
-WifiStatus createWifiStatusFromLegacyError(legacy_hal::wifi_error error, const std::string& desc) {
+WifiStatus createWifiStatusFromLegacyError(legacy_hal::wifi_error error,
+                                           const std::string& desc) {
     switch (error) {
         case legacy_hal::WIFI_ERROR_UNINITIALIZED:
         case legacy_hal::WIFI_ERROR_NOT_AVAILABLE:
@@ -73,13 +75,16 @@ WifiStatus createWifiStatusFromLegacyError(legacy_hal::wifi_error error, const s
             return createWifiStatus(WifiStatusCode::ERROR_INVALID_ARGS, desc);
 
         case legacy_hal::WIFI_ERROR_TIMED_OUT:
-            return createWifiStatus(WifiStatusCode::ERROR_UNKNOWN, desc + ", timed out");
+            return createWifiStatus(WifiStatusCode::ERROR_UNKNOWN,
+                                    desc + ", timed out");
 
         case legacy_hal::WIFI_ERROR_TOO_MANY_REQUESTS:
-            return createWifiStatus(WifiStatusCode::ERROR_UNKNOWN, desc + ", too many requests");
+            return createWifiStatus(WifiStatusCode::ERROR_UNKNOWN,
+                                    desc + ", too many requests");
 
         case legacy_hal::WIFI_ERROR_OUT_OF_MEMORY:
-            return createWifiStatus(WifiStatusCode::ERROR_UNKNOWN, desc + ", out of memory");
+            return createWifiStatus(WifiStatusCode::ERROR_UNKNOWN,
+                                    desc + ", out of memory");
 
         case legacy_hal::WIFI_ERROR_BUSY:
             return createWifiStatus(WifiStatusCode::ERROR_BUSY);
@@ -91,7 +96,8 @@ WifiStatus createWifiStatusFromLegacyError(legacy_hal::wifi_error error, const s
             return createWifiStatus(WifiStatusCode::ERROR_UNKNOWN, "unknown");
 
         default:
-            return createWifiStatus(WifiStatusCode::ERROR_UNKNOWN, "unknown error");
+            return createWifiStatus(WifiStatusCode::ERROR_UNKNOWN,
+                                    "unknown error");
     }
 }
 
@@ -100,7 +106,7 @@ WifiStatus createWifiStatusFromLegacyError(legacy_hal::wifi_error error) {
 }
 
 }  // namespace implementation
-}  // namespace V1_6
+}  // namespace V1_4
 }  // namespace wifi
 }  // namespace hardware
 }  // namespace android
