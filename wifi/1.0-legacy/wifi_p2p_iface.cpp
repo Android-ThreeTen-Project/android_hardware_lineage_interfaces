@@ -23,12 +23,13 @@
 namespace android {
 namespace hardware {
 namespace wifi {
-namespace V1_6 {
+namespace V1_4 {
 namespace implementation {
 using hidl_return_util::validateAndCall;
 
-WifiP2pIface::WifiP2pIface(const std::string& ifname,
-                           const std::weak_ptr<legacy_hal::WifiLegacyHal> legacy_hal)
+WifiP2pIface::WifiP2pIface(
+    const std::string& ifname,
+    const std::weak_ptr<legacy_hal::WifiLegacyHal> legacy_hal)
     : ifname_(ifname), legacy_hal_(legacy_hal), is_valid_(true) {}
 
 void WifiP2pIface::invalidate() {
@@ -36,13 +37,9 @@ void WifiP2pIface::invalidate() {
     is_valid_ = false;
 }
 
-bool WifiP2pIface::isValid() {
-    return is_valid_;
-}
+bool WifiP2pIface::isValid() { return is_valid_; }
 
-std::string WifiP2pIface::getName() {
-    return ifname_;
-}
+std::string WifiP2pIface::getName() { return ifname_; }
 
 Return<void> WifiP2pIface::getName(getName_cb hidl_status_cb) {
     return validateAndCall(this, WifiStatusCode::ERROR_WIFI_IFACE_INVALID,
@@ -63,7 +60,7 @@ std::pair<WifiStatus, IfaceType> WifiP2pIface::getTypeInternal() {
 }
 
 }  // namespace implementation
-}  // namespace V1_6
+}  // namespace V1_4
 }  // namespace wifi
 }  // namespace hardware
 }  // namespace android
