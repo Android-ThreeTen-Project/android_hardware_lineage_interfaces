@@ -1,0 +1,5 @@
+service vendor.memtrack-legacy /vendor/bin/hw/android.hardware.memtrack-service.legacy
+    interface aidl android.hardware.memtrack.IMemtrack/default
+    class hal
+    user nobody
+    group system graphics

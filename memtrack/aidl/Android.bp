@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: Apache-2.0
+cc_binary {
+    name: "android.hardware.memtrack-service.legacy",
+    vendor: true,
+    relative_install_path: "hw",
+    init_rc: ["memtrack-legacy.rc"],
+    srcs: ["service.cpp"],
+    shared_libs: [
+        "android.hardware.memtrack-V1-ndk",
+        "libbinder_ndk",
+        "libhardware",
+        "liblog",
+    ],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+}
